@@ -56,5 +56,32 @@ public class BinaryControllerTest {
 			.andExpect(model().attribute("result", "1110"))
 			.andExpect(model().attribute("operand1", "111"));
     }
+    @Test
+	    public void andParametertest() throws Exception {
+        this.mvc.perform(post("/").param("operand1","111").param("operator","&").param("operand2","111"))//.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+			.andExpect(model().attribute("result", "111"))
+			.andExpect(model().attribute("operand1", "111"));
+    }
+
+    @Test
+    public void orParametertest() throws Exception {
+    this.mvc.perform(post("/").param("operand1","111").param("operator","|").param("operand2","111"))//.andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(view().name("result"))
+        .andExpect(model().attribute("result", "111"))
+        .andExpect(model().attribute("operand1", "111"));
+}
+
+@Test
+public void multiplyParametertest() throws Exception {
+this.mvc.perform(post("/").param("operand1","111").param("operator","*").param("operand2","1010"))//.andDo(print())
+    .andExpect(status().isOk())
+    .andExpect(view().name("result"))
+    .andExpect(model().attribute("result", "1000110"))
+    .andExpect(model().attribute("operand1", "111"));
+}
+
 
 }
