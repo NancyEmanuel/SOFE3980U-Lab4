@@ -79,4 +79,120 @@ public class Binary
 		return result;
 		
 	}
+
+
+// and code 
+/**
+ * 
+ * @param binarynuma The first binary operand for the AND operation
+ * @param binarynumb The second binary operand for the AND operation
+ * @return A binary variable with a value of <i>binarynuma & binarynuma</i>.
+ */
+
+	public static Binary and(Binary binarynuma,Binary binarynumb){
+
+		int lengtha = binarynuma.number.length();
+		int lengthb = binarynumb.number.length();
+
+		//sets max binary # length, ex if lengtha is 101 and lengthb is 101111, max length is 6 
+		int lengthfinal = Math.max(lengtha, lengthb);
+
+		// pads binarynuma with 0's to ensure binarynuma and binarynumb same length (lengthfinal)
+		while (binarynuma.number.length() < lengthfinal) {
+            binarynuma.number = "0" + binarynuma.number;
+        }
+
+		// pads binarynumb with 0's to ensure binarynuma and binarynumb same length (lengthfinal)
+		while (binarynumb.number.length() < lengthfinal) {
+            binarynumb.number = "0" + binarynumb.number;
+        }
+
+		StringBuilder result = new StringBuilder();
+
+// iterates through each binary # and performs and operation, and gives binary result of and operation 
+		for (int i = 0; i < lengthfinal; i++) {
+			char binarynumber1 = binarynuma.number.charAt(i);
+			char binarynumber2 = binarynumb.number.charAt(i);
+			char binaryandresult = (binarynumber1 == '1' && binarynumber2 == '1') ? '1': '0';
+			result.append(binaryandresult);
+				}
+
+				return new Binary(result.toString());
+	}
+
+	// or code 
+/**
+ * 
+ * @param binarynuma The first binary operand for the OR operation
+ * @param binarynumb The second binary operand for the OR operation
+ * @return A binary variable with a value of <i>binarynuma | binarynuma</i>.
+ */
+	public static Binary or(Binary binarynuma,Binary binarynumb){
+
+		int lengtha = binarynuma.number.length();
+		int lengthb = binarynumb.number.length();
+
+		//sets max binary # length, ex if lengtha is 101 and lengthb is 101111, max length is 6 
+		int lengthfinal = Math.max(lengtha, lengthb);
+
+		// pads binarynuma with 0's to ensure binarynuma and binarynumb same length (lengthfinal)
+		while (binarynuma.number.length() < lengthfinal) {
+            binarynuma.number = "0" + binarynuma.number;
+        }
+
+		// pads binarynumb with 0's to ensure binarynuma and binarynumb same length (lengthfinal)
+		while (binarynumb.number.length() < lengthfinal) {
+            binarynumb.number = "0" + binarynumb.number;
+        }
+
+		StringBuilder result = new StringBuilder();
+
+// iterates through each binary # and performs or operation, and gives binary result of or operation 
+		for (int i = 0; i < lengthfinal; i++) {
+			char binarynumber1 = binarynuma.number.charAt(i);
+			char binarynumber2 = binarynumb.number.charAt(i);
+			char binaryorresult = (binarynumber1 == '1' || binarynumber2 == '1') ? '1': '0';
+			result.append(binaryorresult);
+				}
+
+				return new Binary(result.toString());
+	}
+
+
+	//multiply code
+	
+/**
+ * 
+ * @param binarynuma The first binary multiplicand for the multiply operation
+ * @param binarynumb The second binary multiplier for the multiply operation
+ * @return A binary variable with a value of <i>binarynuma * binarynuma</i>.
+ */
+
+	public static Binary multiply(Binary binarynuma,Binary binarynumb) {
+
+		int multiplicand = Integer.parseInt(binarynuma.number, 2);
+		int multiplier = Integer.parseInt(binarynumb.number, 2);
+		int lengthfinal = Math.max(binarynuma.number.length(), binarynumb.number.length());
+
+		// pads binarynuma with 0's to ensure binarynuma and binarynumb same length (lengthfinal)
+		while (binarynuma.number.length() < lengthfinal) {
+            binarynuma.number = "0" + binarynuma.number;
+        }
+
+		// pads binarynumb with 0's to ensure binarynuma and binarynumb same length (lengthfinal)
+		while (binarynumb.number.length() < lengthfinal) {
+            binarynumb.number = "0" + binarynumb.number;
+        }
+
+		// multiplies multiplicand with multiplier and value stored in result 
+		int result = multiplicand * multiplier;
+		
+		// converts the integer result from above operation to binary string 
+		String Binarymultiplyresult = Integer.toBinaryString(result);
+
+		//output 
+		return new Binary(Binarymultiplyresult);
+
+	}
+
 }	
